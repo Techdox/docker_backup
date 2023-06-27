@@ -2,10 +2,10 @@ import paramiko
 import os
 
 # SSH connection details
-remote_hostname = '192.168.68.109'
+remote_hostname = ''
 remote_port = 22  # SSH default port
-remote_username = 'techdox'
-private_key_path = '/Users/nick/.ssh/id_rsa'
+remote_username = ''
+private_key_path = ''
 
 # Inputs for container name, backup file name, and backup path
 container_name = input("Enter the container name to backup: ")
