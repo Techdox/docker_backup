@@ -21,10 +21,10 @@ def run_backup(container_name, backup_file_name, backup_path, local_destination)
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-    try:
-        # Load the private key
-        private_key = paramiko.RSAKey.from_private_key_file(PRIVATE_KEY_PATH)
+    # Load the private key
+    private_key = paramiko.RSAKey.from_private_key_file(PRIVATE_KEY_PATH)
 
+    try:
         # Connect to the remote server using key-based authentication
         ssh_client.connect(REMOTE_HOSTNAME, REMOTE_PORT, REMOTE_USERNAME, pkey=private_key)
 
@@ -56,10 +56,10 @@ def run_backup(container_name, backup_file_name, backup_path, local_destination)
         ssh_client.exec_command(start_command)
         print("Docker container started.")
 
+    finally:
         # Close the SCP client
         scp_client.close()
-
-    finally:
+        
         # Close the SSH connection
         ssh_client.close()
 
