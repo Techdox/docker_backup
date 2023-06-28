@@ -2,10 +2,10 @@ import paramiko
 import os
 
 # Constants for SSH connection details
-REMOTE_HOSTNAME = 'remote_server_hostname'
+REMOTE_HOSTNAME = '192.168.68.109'
 REMOTE_PORT = 22  # SSH default port
-REMOTE_USERNAME = 'remote_username'
-PRIVATE_KEY_PATH = '/path/to/private/key'
+REMOTE_USERNAME = 'techdox'
+PRIVATE_KEY_PATH = '/Users/nick/.ssh/id_rsa'
 
 def run_backup(container_name, backup_file_name, backup_path, local_destination):
     # Command to execute on the remote server to stop the Docker container
@@ -35,6 +35,9 @@ def run_backup(container_name, backup_file_name, backup_path, local_destination)
         # Execute the backup command on the remote server
         stdin, stdout, stderr = ssh_client.exec_command(backup_command)
         print(stdout.read().decode())
+        
+        # Print the standard error
+        print(stderr.read().decode())
 
         # Create an SCP client from the SSH client
         scp_client = ssh_client.open_sftp()
