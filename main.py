@@ -2,10 +2,10 @@ import paramiko
 import os
 
 # Constants for SSH connection details
-REMOTE_HOSTNAME = '192.168.68.109'
+REMOTE_HOSTNAME = 'remote_server_hostname'
 REMOTE_PORT = 22  # SSH default port
-REMOTE_USERNAME = 'techdox'
-PRIVATE_KEY_PATH = '/Users/nick/.ssh/id_rsa'
+REMOTE_USERNAME = 'remote_username'
+PRIVATE_KEY_PATH = '/path/to/private/key'
 
 def run_backup(container_name, backup_file_name, backup_path, local_destination):
     # Command to execute on the remote server to stop the Docker container
