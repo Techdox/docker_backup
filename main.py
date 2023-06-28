@@ -1,13 +1,13 @@
 import paramiko
 import os
 
-def run_backup(container_name, backup_file_name, backup_path, local_destination):
-    # SSH connection details
-    remote_hostname = '192.168.68.109'
-    remote_port = 22  # SSH default port
-    remote_username = 'techdox'
-    private_key_path = '/Users/nick/.ssh/id_rsa'
+# Constants for SSH connection details
+REMOTE_HOSTNAME = 'remote_server_hostname'
+REMOTE_PORT = 22  # SSH default port
+REMOTE_USERNAME = 'remote_username'
+PRIVATE_KEY_PATH = '/path/to/private/key'
 
+def run_backup(container_name, backup_file_name, backup_path, local_destination):
     # Command to execute on the remote server to stop the Docker container
     stop_command = f'docker stop {container_name}'
 
@@ -23,10 +23,10 @@ def run_backup(container_name, backup_file_name, backup_path, local_destination)
 
     try:
         # Load the private key
-        private_key = paramiko.RSAKey.from_private_key_file(private_key_path)
+        private_key = paramiko.RSAKey.from_private_key_file(PRIVATE_KEY_PATH)
 
         # Connect to the remote server using key-based authentication
-        ssh_client.connect(remote_hostname, remote_port, remote_username, pkey=private_key)
+        ssh_client.connect(REMOTE_HOSTNAME, REMOTE_PORT, REMOTE_USERNAME, pkey=private_key)
 
         # Execute the command to stop the Docker container
         ssh_client.exec_command(stop_command)
